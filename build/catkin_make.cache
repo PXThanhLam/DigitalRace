@@ -1,0 +1,2 @@
+digital_race
+-DCATKIN_DEVEL_PREFIX=/home/tl/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/tl/catkin_ws/install -G Unix Makefiles
