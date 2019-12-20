@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="87e33a23-be41-4c70-93f9-c238833a18fa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/digital_race/outputdepth.avi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/digital_race/src/CarControll.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/digital_race/src/CarControll.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/digital_race/src/LaneDetection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/digital_race/src/LaneDetection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/digital_race/src/get_video.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/digital_race/src/get_video.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/digital_race/src/testDrive.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/digital_race/src/testDrive.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Tce6z7rPhpeAhuXmULIGvf7qCx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager" selected="Python.CarDetection">
+    <configuration name="CarDetection" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="catkin_ws" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/digital_race/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/digital_race/src/CarDetection.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="LaneDetection" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="catkin_ws" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/digital_race/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/digital_race/src/LaneDetection.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="cds_code" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="catkin_ws" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/digital_race/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/digital_race/src/cds_code.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testFrame" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="catkin_ws" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/digital_race/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/digital_race/src/testFrame.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testcv" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="catkin_ws" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/digital_race/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/digital_race/src/SimpleLaneDetection.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.CarDetection" />
+        <item itemvalue="Python.LaneDetection" />
+        <item itemvalue="Python.cds_code" />
+        <item itemvalue="Python.testFrame" />
+        <item itemvalue="Python.testcv" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="87e33a23-be41-4c70-93f9-c238833a18fa" name="Default Changelist" comment="" />
+      <created>1573763639990</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1573763639990</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Lane Detection +PID">
+      <created>1574394241349</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1574394241349</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.launch" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Lane Detection +PID" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lane Detection +PID" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1830" height="494" key="GridCell.Tab.0.bottom" timestamp="1576346284435">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1830" height="494" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1576346284435" />
+    <state width="1830" height="494" key="GridCell.Tab.0.center" timestamp="1576346284434">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1830" height="494" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1576346284434" />
+    <state width="1830" height="494" key="GridCell.Tab.0.left" timestamp="1576346284434">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1830" height="494" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1576346284434" />
+    <state width="1830" height="494" key="GridCell.Tab.0.right" timestamp="1576346284435">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1830" height="494" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1576346284435" />
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1576844293899">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1576844293899" />
+    <state x="649" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1576844239202">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1576844239202" />
+    <state x="117" y="109" width="1487" height="542" key="dock-window-1" timestamp="1576092044015">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="117" y="109" width="1487" height="542" key="dock-window-1/67.27.1853.1053@67.27.1853.1053" timestamp="1576092044015" />
+    <state x="656" y="257" key="search.everywhere.popup" timestamp="1576056931990">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="656" y="257" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1576056931990" />
+  </component>
+</project>
