@@ -10,7 +10,7 @@ cap = cv2.VideoCapture('output.avi')
 car=CarControll()
 while (cap.isOpened()):
     start_time = time.time()
-    car_cascade = cv2.CascadeClassifier('/home/tl/catkin_ws/src/digital_race/src/car.xml')
+    ret, image = cap.read()
     S_binary_img = hls_select(image)
     image = gaussian_blur(image, 3)
     combine = combined_color_gradient(image)
@@ -43,7 +43,7 @@ while (cap.isOpened()):
     leftx, lefty, rightx, righty, img_left_fit, img_right_fit, lre = pipeline(warp_image, 0, image, Minv, Is_cross, Is_snow)
     boundary_cars, confirmlr = [], 'no'
     if len(leftx) > 10 and len(rightx) > 10:
-        boundary_cars, confirmlr = get_car_boundary(car_cascade, image, leftx, lefty, rightx, righty)
+        boundary_cars, confirmlr = get_car_boundary( image, leftx, lefty, rightx, righty)
     if Is_cross or Is_snow:
         boundary_cars, confirmlr = [], 'no'
     cte, speed, left_x_point, left_y_point, right_x_point, right_y_point, mid_x, mid_y = car.driveCar(leftx, lefty, rightx,

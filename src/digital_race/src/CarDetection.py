@@ -4,8 +4,9 @@ import cv2
 from LaneDetection import perspective_transform,pipeline,combined_color_gradient,detect_cross,detect_snow,hls_select
 import matplotlib.pyplot as plt
 import time
-
-car_cascade = cv2.CascadeClassifier('/home/tl/catkin_ws/src/digital_race/src/car.xml')
+from CascadeCarDetect import cascade_get_car_position
+from YoloCarDetect import yolo_car_detection
+# from keras import backend as K
 def findIntersection(x1, y1, x2, y2, x3, y3, x4, y4):
     if ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)) ==0:
         return False
@@ -36,32 +37,52 @@ def detect_car_pos(bounding_cars,lx1,ly1,rx1,ry1,intersec_x,intersec_y):
     distance_to_right_lane = distance_from_point_to_line(np.array([rx1, ry1]), np.array([intersec_x, intersec_y]),np.array([x + w / 2, y + h / 2]))
     return distance_to_left_lane<distance_to_right_lane
 
-def get_car_boundary(car_cascade,image,leftx, lefty, rightx, righty,lr):
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    cars = car_cascade.detectMultiScale(gray, scaleFactor=1.02, minNeighbors=1,minSize=(40,40))
-    #lx1, ly1, lx2, ly2, rx1, ry1, rx2, ry2 = leftx[0], lefty[0], leftx[int(len(leftx)/2)], lefty[int(len(leftx)/2)],rightx[0], righty[0], rightx[int(len(rightx)/2)], righty[int(len(rightx)/2)]
-    #lx1, ly1, lx2, ly2, rx1, ry1, rx2, ry2 = leftx[0], lefty[0], leftx[-1], lefty[-1],rightx[0], righty[0], rightx[-1], righty[-1]
+def get_all_doub_position(image,cascade_or_yolo):
+    if cascade_or_yolo is 'yolo':
+        return np.asarray(yolo_car_detection(image)[1],dtype=np.int)
+    else:
+        return cascade_get_car_position(image)
+
+
+
+def get_car_boundary(image,leftx, lefty, rightx, righty):
+    cars=get_all_doub_position(image,'cascade')
+    discard_small_cars=[]
+    for car in cars:
+        if car[3]*car[2]>324 and car[3]*car[2]<16900:
+            discard_small_cars.append(car)
+    cars=discard_small_cars
+
     lx1, ly1, lx2, ly2, rx1, ry1, rx2, ry2 = leftx[0], lefty[0], leftx[int(2*len(leftx)/3)], lefty[int(2*len(lefty)/3)], rightx[0], righty[0], rightx[int(2*len(rightx)/3)],righty[int(2*len(righty)/3)]
     intersec_x, intersec_y = findIntersection(lx1, ly1, lx2, ly2, rx1, ry1, rx2, ry2)
     bounding_cars=[]
     confirm_left_right='no'
+    pt1 = tuple(np.asarray((lx1, ly1), dtype=np.int))
+    pt2 = tuple(np.asarray((rx1, ry1), dtype=np.int))
+    pt3 = tuple(np.asarray((intersec_x, intersec_y), dtype=np.int))
+    cv2.line(image, pt1, pt3, (0, 255, 0), 2)
+    cv2.line(image, pt2, pt3, (0, 255, 0), 2)
     for (x, y, w, h) in cars:
-        is_lr = False if lr == 'equal' else True
+        x,y,w,h=int(x),int(y),int(w),int(h)
         cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
         cv2.circle(image, (x + w / 2, y + h / 2), 3, (255, 255, 0))
         if isInside(lx1,ly1,rx1,ry1,intersec_x,intersec_y,x+w/2,y+h/2):
-            if  not discard_shadown_overwhelm_line([x,y,w,h],leftx,rightx) or is_lr:
-                bounding_cars.append((x,y,w,h))
-                #break
+            bounding_cars.append((x,y,w,h))
+            break
+        elif isInside(lx1,ly1,rx1,ry1,intersec_x,intersec_y,x+w,y+h) and isInside(lx1,ly1,rx1,ry1,intersec_x,intersec_y,x,y+h):
+            bounding_cars.append((x, y, w, h))
+            break
 
         elif isInside(lx1,ly1,rx1,ry1,intersec_x,intersec_y,x+w,y+h):
             bounding_cars.append((x, y, w, h))
             confirm_left_right='left'
-            #break
+            break
+
         elif isInside(lx1,ly1,rx1,ry1,intersec_x,intersec_y,x,y+h):
             bounding_cars.append((x, y, w, h))
             confirm_left_right = 'right'
-            #break
+            break
+
 
 
     return bounding_cars,confirm_left_right
@@ -74,56 +95,44 @@ def discard_shadown_overwhelm_line(shadow_box,listleft_x,listright_x):
 
 
 if __name__=='__main__':
-    img_path='/home/tl/Pictures/Cardetec/detec13.png'
-    image=cv2.imread(img_path)
-    image = cv2.resize(image, (320, 240), interpolation=cv2.INTER_AREA)
-    combine = combined_color_gradient(image)
-    warp_image,Minv,_=perspective_transform(combine)
-    leftx, lefty, rightx, righty, img_left_fit, img_right_fit,lre = pipeline(warp_image, 0, image, Minv)
-    #lx1, ly1, lx2, ly2, rx1, ry1, rx2, ry2 = leftx[0], lefty[0], leftx[int(2 * len(leftx) / 3)], lefty[int(2 * len(leftx) / 3)], rightx[0], righty[0], rightx[int(2 * len(rightx) / 3)], righty[int(2 * len(rightx) / 3)]
-    #lx1, ly1, lx2, ly2, rx1, ry1, rx2, ry2 = leftx[0], lefty[0], leftx[-1], lefty[-1], rightx[0], righty[0], rightx[-1], righty[-1]
-    lx1, ly1, lx2, ly2, rx1, ry1, rx2, ry2 = leftx[0], lefty[0], leftx[int(2 * len(leftx) / 3)], lefty[int(2 * len(lefty) / 3)], rightx[0], righty[0], rightx[int(2 * len(rightx) / 3)], righty[int(2 * len(righty) / 3)]
 
-    bouding_cars,confirm=get_car_boundary(car_cascade,image,leftx, lefty, rightx, righty,lre)
-    intersec_x,intersec_y=findIntersection(lx1,ly1,lx2,ly2,rx1,ry1,rx2,ry2)
-    pt1=tuple(np.asarray((lx1,ly1),dtype=np.int))
-    pt2=tuple(np.asarray((rx1,ry1),dtype=np.int))
-    pt3=tuple(np.asarray((intersec_x,intersec_y),dtype=np.int))
-    cv2.line(image,pt1,pt3,(0, 255, 0),2)
-    cv2.line(image,pt2,pt3,(0, 255, 0),2)
+    # img_path='/home/tl/Pictures/cds2.png'
+    # image=cv2.imread(img_path)
+    # image = cv2.resize(image, (320, 240), interpolation=cv2.INTER_AREA)
+    # combine = combined_color_gradient(image)
+    # warp_image,Minv,_=perspective_transform(combine)
+    # leftx, lefty, rightx, righty, img_left_fit, img_right_fit,lre = pipeline(warp_image, 0, image, Minv)
+    # lx1, ly1, lx2, ly2, rx1, ry1, rx2, ry2 = leftx[0], lefty[0], leftx[int(2 * len(leftx) / 3)], lefty[int(2 * len(lefty) / 3)], rightx[0], righty[0], rightx[int(2 * len(rightx) / 3)], righty[int(2 * len(righty) / 3)]
+    #
+    # bouding_cars,confirm=get_car_boundary(image,leftx, lefty, rightx, righty,lre)
+    # intersec_x,intersec_y=findIntersection(lx1,ly1,lx2,ly2,rx1,ry1,rx2,ry2)
+    # pt1=tuple(np.asarray((lx1,ly1),dtype=np.int))
+    # pt2=tuple(np.asarray((rx1,ry1),dtype=np.int))
+    # pt3=tuple(np.asarray((intersec_x,intersec_y),dtype=np.int))
+    # cv2.line(image,pt1,pt3,(0, 255, 0),2)
+    # cv2.line(image,pt2,pt3,(0, 255, 0),2)
+    #
+    # for (x, y, w, h) in bouding_cars:
+    #     cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
+    #     cv2.circle(image,(x+w/2,y+h/2),3,(255,255,0))
+    # cv2.imshow("image", image)
+    # cv2.waitKey()
 
-    for (x, y, w, h) in bouding_cars:
-        cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
-        cv2.circle(image,(x+w/2,y+h/2),3,(255,255,0))
-        print (x,y,w,h)
-        print confirm
-        print '-----------'
-    print lre
-    cv2.imshow("image", image)
-    cv2.waitKey()
+    cap = cv2.VideoCapture('output.avi')
+    while (cap.isOpened()):
+        ret, image = cap.read()
+        if ret == True:
+            start_time = time.time()
+            image = cv2.resize(image, (320, 240), interpolation=cv2.INTER_AREA)
+            combine = combined_color_gradient(image)
+            warp_image, Minv, _ = perspective_transform(combine)
+            leftx, lefty, rightx, righty, img_left_fit, img_right_fit, lre = pipeline(warp_image, 0, image, Minv)
+            if len(leftx)>0 and len(rightx)>0:
+                bouding_cars, _ = get_car_boundary(image, leftx, lefty, rightx, righty)
 
-    # cap = cv2.VideoCapture('output.avi')
-    # while (cap.isOpened()):
-    #     ret, image = cap.read()
-    #     if ret == True:
-    #         start_time = time.time()
-    #         image = cv2.resize(image, (320, 240), interpolation=cv2.INTER_AREA)
-    #         combine = combined_color_gradient(image)
-    #         warp_image, Minv, _ = perspective_transform(combine)
-    #         leftx, lefty, rightx, righty, img_left_fit, img_right_fit, lre = pipeline(warp_image, 0, image, Minv)
-    #         if len(leftx)>0 and len(rightx)>0:
-    #             lx1, ly1, lx2, ly2, rx1, ry1, rx2, ry2 = leftx[0], lefty[0], leftx[int(len(leftx) / 2)], lefty[
-    #                 int(len(leftx) / 2)], rightx[0], righty[0], rightx[int(len(rightx) / 2)], righty[int(len(rightx) / 2)]
-    #             bouding_cars, confirm = get_car_boundary(car_cascade, image, leftx, lefty, rightx, righty,lre)
-    #             intersec_x, intersec_y = findIntersection(lx1, ly1, lx2, ly2, rx1, ry1, rx2, ry2)
-    #             pt1 = tuple(np.asarray((lx1, ly1), dtype=np.int))
-    #             pt2 = tuple(np.asarray((rx1, ry1), dtype=np.int))
-    #             pt3 = tuple(np.asarray((intersec_x, intersec_y), dtype=np.int))
-    #             cv2.line(image, pt1, pt3, (0, 255, 0), 2)
-    #             cv2.line(image, pt2, pt3, (0, 255, 0), 2)
-    #             for (x, y, w, h) in bouding_cars:
-    #                 cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
-    #                 cv2.circle(image, (x + w / 2, y + h / 2), 3, (255, 255, 0))
-    #             cv2.imshow("image", image)
-    #             cv2.waitKey(1)
-    #             #print "--- frame ---" +str(1/(time.time() - start_time))
+                for (x, y, w, h) in bouding_cars:
+                    cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                    cv2.circle(image, (x + w / 2, y + h / 2), 3, (255, 255, 0))
+                cv2.imshow("image", image)
+                cv2.waitKey(300)
+                print "--- frame ---" +str(1/(time.time() - start_time))

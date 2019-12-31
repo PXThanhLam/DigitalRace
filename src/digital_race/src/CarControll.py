@@ -17,7 +17,7 @@ def bb_intersection_over_union(boxA, boxB):
 pi = 3.141592654
 patience_spped_thread=5
 patience_cross_thread=0
-patience_car_thread=4
+patience_car_thread=0
 class CarControll:
     def __init__(self):
         self.x_car=160
@@ -201,8 +201,10 @@ class CarControll:
                 left_y=int(2*left_y-right_y)
             else:
                 self.cars.append(interset_point[0] - list_left_x[-1] < list_right_x[-1] - interset_point[0])
+
             is_left_bias = self.cars[1]
-            print 'left' if is_left_bias else 'right'
+            print 'detect_left' if is_left_bias else 'detect_right'
+
 
             if self.cars[1]: #is_left_bias
                 left_x = x + int(0.9*w)

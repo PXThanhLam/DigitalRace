@@ -88,7 +88,7 @@ def combined_color_gradient(image):
     combined=morph_transform(combined,100,100,100,220,True)
     return combined
 
-def perspective_transform(image,src=np.float32([[0,200],[80,100],[240,100],[320,200]]),dst=np.float32([[50,240],[80,0],[240,0],[300,240]])):
+def perspective_transform(image,src=np.float32([[20,200],[80,100],[240,100],[320,200]]),dst=np.float32([[50,240],[80,0],[240,0],[300,240]])):
     M = cv2.getPerspectiveTransform(src, dst)
     Minv = cv2.getPerspectiveTransform(dst, src)
     img_size=(image.shape[1],image.shape[0])
@@ -98,7 +98,8 @@ def perspective_transform(image,src=np.float32([[0,200],[80,100],[240,100],[320,
 
 def detect_snow(sbinary_image):
     histogram=np.sum(sbinary_image[100:240],axis=1)
-    if len(np.where(histogram>=160)[0])>40:
+
+    if len(np.where(histogram>=160)[0])>50:
         return True
     return False
 
@@ -115,11 +116,12 @@ def get_left_right_base(bin_img,top,bot):
     midpoint = np.int(histogram.shape[0]/2)
     leftx_base = np.argmax(histogram[:midpoint])
     rightx_base = np.argmax(histogram[midpoint:]) + midpoint
-    if histogram[rightx_base]<=8:
-        print 'right_hist ' +str(histogram[rightx_base])
+
+    if histogram[rightx_base]<=10:
+        #print 'right_hist ' +str(histogram[rightx_base])
         rightx_base=290
-    if histogram[leftx_base]<=8:
-        print 'left hist ' +str(histogram[leftx_base])
+    if histogram[leftx_base]<=10:
+        #print 'left hist ' +str(histogram[leftx_base])
         leftx_base=30
     if rightx_base-leftx_base<70:
         #print 'Before :'+' '+str([leftx_base,rightx_base])
@@ -141,7 +143,7 @@ def pipeline(binary_warped, count, image,Minv,Is_cross=False,Is_snow=False):
 
     if count == 0:
 
-        top_x=160
+        top_x=165
         if  Is_snow :
             binary_warped[100:240]=0
 
@@ -171,8 +173,8 @@ def pipeline(binary_warped, count, image,Minv,Is_cross=False,Is_snow=False):
             win_xleft_high = leftx_current + margin
             win_xright_low = rightx_current - margin
             win_xright_high = rightx_current + margin
-            cv2.rectangle(binary_warped, (win_xleft_low, win_y_low), (win_xleft_high, win_y_high),(0, 255, 0), 2)
-            cv2.rectangle(binary_warped, (win_xright_low, win_y_low), (win_xright_high, win_y_high),(0, 255, 0), 2)
+            # cv2.rectangle(binary_warped, (win_xleft_low, win_y_low), (win_xleft_high, win_y_high),(0, 255, 0), 2)
+            # cv2.rectangle(binary_warped, (win_xright_low, win_y_low), (win_xright_high, win_y_high),(0, 255, 0), 2)
 
 
             good_left_inds = ((nonzeroy >= win_y_low) & (nonzeroy < win_y_high) &
@@ -181,8 +183,8 @@ def pipeline(binary_warped, count, image,Minv,Is_cross=False,Is_snow=False):
             good_right_inds = ((nonzeroy >= win_y_low) & (nonzeroy < win_y_high) &
                                (nonzerox >= win_xright_low) & (nonzerox < win_xright_high)).nonzero()[0]
 
-            cv2.imshow('c', binary_warped)
-            cv2.waitKey(0)
+            # cv2.imshow('c', binary_warped)
+            # cv2.waitKey(0)
 
             left_lane_inds.append(good_left_inds[-5:]) if len(good_left_inds)>minpix*2  else left_lane_inds.append([])
             right_lane_inds.append(good_right_inds[:5]) if len(good_right_inds)>minpix*2 else right_lane_inds.append([])
@@ -207,7 +209,7 @@ def pipeline(binary_warped, count, image,Minv,Is_cross=False,Is_snow=False):
             left_right_equal = 'left' if (right_zero_count-left_zero_count) > nwindows /5 else 'right' if (left_zero_count-right_zero_count) > nwindows /5 else 'equal'
 
         # print left_right_equal
-        print rightx_base-leftx_base
+        #print rightx_base-leftx_base
 
         left_lane_inds = np.concatenate(left_lane_inds).astype(np.int32)
         right_lane_inds = np.concatenate(right_lane_inds).astype(np.int32)
@@ -301,7 +303,7 @@ if __name__=='__main__':
     # cv2.destroyAllWindows()
 
 
-    img_path='/home/tl/Pictures/Cardetec/detec12.png'
+    img_path='/home/tl/Pictures/cds39.png'
     image = cv2.imread(img_path)
     image = cv2.resize(image, (320, 240), interpolation=cv2.INTER_AREA)
     S_binary_img=hls_select(image)
