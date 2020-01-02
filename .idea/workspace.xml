@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87e33a23-be41-4c70-93f9-c238833a18fa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/digital_race/src/YoloTrafficSignAndCarDetect.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/digital_race/src/CarControll.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/digital_race/src/CarControll.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/digital_race/src/CarDetection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/digital_race/src/CarDetection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/digital_race/src/CarDetection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/digital_race/src/CarAndSignDetection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/digital_race/src/LaneDetection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/digital_race/src/LaneDetection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/digital_race/src/cds_code.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/digital_race/src/YoloCarDetect.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/digital_race/src/testDrive.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/digital_race/src/testDrive.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/digital_race/src/testFrame.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/digital_race/src/testFrame.py" afterDir="false" />
     </list>
@@ -45,7 +46,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Downloads/object-detection-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -53,7 +54,7 @@
       <recent name="$PROJECT_DIR$/src/digital_race/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.zz">
+  <component name="RunManager" selected="Python.CarDetection">
     <configuration name="CarDetection" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="catkin_ws" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -66,7 +67,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/digital_race/src/CarDetection.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/digital_race/src/CarAndSignDetection.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -75,7 +76,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="LaneDetection" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="HogSVMSignDetection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="catkin_ws" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -87,7 +88,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/digital_race/src/LaneDetection.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/digital_race/src/HogSVMSignDetection.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -96,7 +97,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="YoloCarDetect" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="YoloTrafficSignAndCarDetect" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="catkin_ws" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -108,7 +109,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/digital_race/src/YoloCarDetect.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/digital_race/src/YoloTrafficSignAndCarDetect.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -161,11 +162,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.zz" />
-        <item itemvalue="Python.YoloCarDetect" />
         <item itemvalue="Python.CarDetection" />
+        <item itemvalue="Python.HogSVMSignDetection" />
         <item itemvalue="Python.testFrame" />
-        <item itemvalue="Python.LaneDetection" />
+        <item itemvalue="Python.YoloTrafficSignAndCarDetect" />
+        <item itemvalue="Python.zz" />
       </list>
     </recent_temporary>
   </component>
@@ -199,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574394241349</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add yolo detection">
+      <created>1577764181137</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1577764181137</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -220,45 +228,46 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Lane Detection +PID" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lane Detection +PID" />
+    <MESSAGE value="Add yolo detection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add yolo detection" />
   </component>
   <component name="WindowStateProjectService">
     <state x="664" y="357" width="648" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577379207570">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="664" y="357" width="648" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1577379207570" />
-    <state x="600" y="147" width="777" height="810" key="CommitChangelistDialog2" timestamp="1577764112018">
+    <state x="600" y="147" width="777" height="810" key="CommitChangelistDialog2" timestamp="1577764179964">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="600" y="147" width="777" height="810" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1577764112018" />
-    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1577589600346">
+    <state x="600" y="147" width="777" height="810" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1577764179964" />
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1577824931517">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1577589600346" />
-    <state width="1830" height="378" key="GridCell.Tab.0.bottom" timestamp="1577733039834">
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1577824931517" />
+    <state width="1830" height="522" key="GridCell.Tab.0.bottom" timestamp="1577947210223">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="378" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1577733039834" />
-    <state width="1830" height="378" key="GridCell.Tab.0.center" timestamp="1577733039832">
+    <state width="1830" height="522" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1577947210223" />
+    <state width="1830" height="522" key="GridCell.Tab.0.center" timestamp="1577947210221">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="378" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1577733039832" />
-    <state width="1830" height="378" key="GridCell.Tab.0.left" timestamp="1577733039831">
+    <state width="1830" height="522" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1577947210221" />
+    <state width="1830" height="522" key="GridCell.Tab.0.left" timestamp="1577947210220">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="378" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1577733039831" />
-    <state width="1830" height="378" key="GridCell.Tab.0.right" timestamp="1577733039833">
+    <state width="1830" height="522" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1577947210220" />
+    <state width="1830" height="522" key="GridCell.Tab.0.right" timestamp="1577947210222">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="378" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1577733039833" />
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1576819296855">
+    <state width="1830" height="522" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1577947210222" />
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1577764205401">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1576819296855" />
-    <state x="649" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1577764025481">
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1577764205401" />
+    <state x="649" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1577961012819">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1577764025481" />
+    <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1577961012819" />
     <state x="117" y="109" width="1487" height="542" key="dock-window-1" timestamp="1576092044015">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

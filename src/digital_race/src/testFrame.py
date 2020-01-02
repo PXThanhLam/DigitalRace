@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from LaneDetection import pipeline,gaussian_blur,combined_color_gradient,perspective_transform,detect_cross,detect_snow,hls_select
-from CarDetection import get_car_boundary,findIntersection
+from CarAndSignDetection import get_car_boundary,findIntersection
 from CarControll import CarControll
 import time
 

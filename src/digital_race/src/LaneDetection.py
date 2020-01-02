@@ -1,7 +1,6 @@
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-from CarControll import CarControll
 
 def gaussian_blur(img,kernel_size):
     return cv2.GaussianBlur(img,(kernel_size,kernel_size),0)

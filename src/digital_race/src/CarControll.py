@@ -42,6 +42,7 @@ class CarControll:
         self.midpoint=[]
         self.cars=None
         self.patience_cars_frame=0
+        self.cross_history=[]
 
 
     def calcultate_cte(self,dst_x,dst_y):
@@ -104,7 +105,7 @@ class CarControll:
         return pid_cte
 
 
-    def driveCar(self,left_x,left_y,right_x,right_y,left_fit,right_fit,bounding_cars,lre,confirmlr):
+    def driveCar(self,left_x,left_y,right_x,right_y,left_fit,right_fit,bounding_cars,lre,confirmlr,Is_cross,sign_directions):
         list_left_x=left_x
         list_left_y=left_y
         list_right_x=right_x
@@ -214,6 +215,30 @@ class CarControll:
                 right_x = x
                 right_y = y + int(0.9*h)
                 cte = self.calcultate_cte(float(left_x + right_x) / 2, float(left_y + right_y) / 2)
+
+        if len(sign_directions)==0:
+            self.cross_history.append('no')
+        else:
+            for sign_direction in sign_directions:
+                self.cross_history.append(sign_direction)
+        self.cross_history=self.cross_history[-10:]
+        num_left_turn=0
+        num_right_turn=0
+        for cross in self.cross_history:
+            if cross is 'sign_detect_left':
+                num_left_turn+=1
+            elif cross is 'sign_detect_right':
+                num_right_turn+=1
+        if Is_cross:
+            if num_left_turn>num_right_turn and num_left_turn+num_right_turn>=3:
+                cte=-40
+            elif num_right_turn>num_left_turn and num_right_turn+num_left_turn>=3:
+                cte=40
+        else:
+            if num_left_turn>num_right_turn and num_left_turn+num_right_turn>=5:
+                cte=-40
+            elif num_right_turn>num_left_turn and num_right_turn+num_left_turn>=5:
+                cte=40
 
 
         pid_cte=self.PID(cte)

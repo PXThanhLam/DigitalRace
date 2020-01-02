@@ -5,7 +5,7 @@ import rospy
 from sensor_msgs.msg import Image,CompressedImage
 from cv_bridge import CvBridge, CvBridgeError
 from LaneDetection import pipeline,gaussian_blur,combined_color_gradient,perspective_transform,detect_cross,detect_snow,hls_select
-from CarDetection import get_car_boundary,findIntersection
+from CarAndSignDetection import get_car_boundary_and_sign_direction,findIntersection
 from CarControll import CarControll
 from std_msgs.msg import Float32
 import time
@@ -13,19 +13,6 @@ import time
 
 
 car=CarControll()
-#Test cross
-class Crossing:
-    def __init__(self):
-        self.cross=0
-        self.prev=False
-    def update_cross(self):
-        self.cross+=1
-    def update_prev(self,val):
-        self.prev=val
-
-crossing=Crossing()
-#
-
 def rgb_image_callback(img_msg):
     try:
         start_time = time.time()
@@ -39,11 +26,12 @@ def rgb_image_callback(img_msg):
         warp_image, Minv, M = perspective_transform(combine) if not Is_cross and not Is_snow else perspective_transform(combine, np.float32([[0, 200], [80, 40], [240, 40], [320, 240]]),np.float32([[0, 240], [80, 0], [240, 0], [320, 240]]))
         leftx, lefty, rightx, righty, img_left_fit, img_right_fit,lre = pipeline(warp_image, 0, image, Minv, Is_cross,Is_snow)
         boundary_cars,confirmlr=[],'no'
+        sign_direction=[]
         if len(leftx)>10 and len(rightx) >10:
-            boundary_cars,confirmlr=get_car_boundary(image,leftx,lefty,rightx,righty)
+            boundary_cars,confirmlr,sign_direction=get_car_boundary_and_sign_direction(image,leftx,lefty,rightx,righty)
         if Is_cross or Is_snow:
             boundary_cars,confirmlr=[],'no'
-        cte, speed, left_x_point, left_y_point, right_x_point, right_y_point, mid_x, mid_y= car.driveCar(leftx, lefty, rightx, righty, img_left_fit,img_right_fit,boundary_cars,lre,confirmlr)
+        cte, speed, left_x_point, left_y_point, right_x_point, right_y_point, mid_x, mid_y= car.driveCar(leftx, lefty, rightx, righty, img_left_fit,img_right_fit,boundary_cars,lre,confirmlr,Is_cross,sign_direction)
 
         if Is_snow:
             speed=np.float32(10)
@@ -83,32 +71,9 @@ def rgb_image_callback(img_msg):
         if cv2.waitKey(1) & 0xFF == ord('q'):
             return
         out.write(image)
-        print crossing.cross
-        if Is_cross:
-            if crossing.cross == 1 :
-                ang_pub.publish(-30)
-                spe_pub.publish(np.float32(30))
-            elif crossing.cross == 2:
-                ang_pub.publish(30)
-                spe_pub.publish(np.float32(30))
-            elif crossing.cross == 3:
-                ang_pub.publish(30)
-                spe_pub.publish(np.float32(30))
-            elif crossing.cross == 4:
-                ang_pub.publish(-30)
-                spe_pub.publish(np.float32(30))
 
-            crossing.update_prev(True)
-
-        if crossing.prev is True and not Is_cross:
-            crossing.update_cross()
-        if not  Is_cross or crossing.cross==0:
-            if not Is_cross :
-                crossing.update_prev(False)
-            else:
-                crossing.update_prev(True)
-            ang_pub.publish(cte)
-            spe_pub.publish(np.float32(speed))
+        ang_pub.publish(cte)
+        spe_pub.publish(np.float32(speed))
 
         #print("frame: " +str (1/(time.time() - start_time)))
     except CvBridgeError, e:
